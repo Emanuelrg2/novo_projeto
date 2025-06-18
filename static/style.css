@@ -1,0 +1,117 @@
+
+body{
+    margin: 0;
+}
+
+.container {
+    
+    font-family: cursive;
+    display: flex; /* ESSENCIAL: Faz com que os filhos diretos de .container se organizem como itens flex.
+                     Se .left e .right estiverem dentro de .container, eles serão dispostos
+                     de acordo com as regras do flexbox (por padrão, em linha/horizontalmente). */
+    width: 100%; /* O contêiner ocupará a largura total de seu elemento pai (geralmente o body) */
+   
+    min-height: 100vh; /* O contêiner terá, no mínimo, a altura total da viewport (janela de visualização do navegador) */
+    background: rgb(79, 34, 229); /* Define a cor de fundo do contêiner como azul.
+                              Observação: Se as divs .left e .right estiverem dentro e preencherem
+                              este contêiner, essa cor azul poderá ficar coberta pelos fundos delas. */
+}
+
+
+.style3 {
+    color: #1f1083;
+    font-size: 30px; /* Define o tamanho da fonte como 20 pixels */
+    text-align: center;
+    margin-bottom: 100px; /* Adiciona uma margem inferior de 20 pixels */
+}
+
+
+.links {
+    margin-top: 30px; /* Adiciona uma margem superior de 10 pixels */
+    margin-bottom: 30px; /* Adiciona uma margem inferior de 10 pixels */
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: rgb(255, 255, 255); /* Define a cor do texto dos links como branca */
+    font-size: x-large;
+    text-align: center;
+    
+}
+
+.form-box{
+    display: flex;
+    flex-direction: column; 
+    border-radius: 8px;
+    width: 100%;
+   
+}
+
+.form-box form{
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    padding: 32px;
+  
+}
+.form-box input,
+.form-box textarea{
+    width: 90%;
+    height: 50px;
+    border-radius: 8px;
+    border:thin solid gray;
+    padding-left: 16px;
+    margin-bottom: 16px;
+    font-size: 16px; /* Define o tamanho da fonte como 16 pixels */
+}
+
+.form-box button{
+    align-items: center;
+    border-radius: 8px;
+    display: flex;
+    border: none;
+    outline: none  ;
+    width: 200px;
+    height: 50px;
+    background-color: rgb(31, 104, 206);
+    color: white;
+    font-size: 20px; /* Define o tamanho da fonte como 20 pixels */
+    font-weight: bold;
+    cursor: pointer; /* Muda o cursor para uma mãozinha quando passa sobre o botão */
+}
+
+.form-box button:hover{
+    background-color: rgb(31, 34, 229); /* Muda a cor de fundo do botão quando o mouse passa sobre ele */
+}
+
+
+/* Estilos Gerais para a Tabela */
+table {
+    width: 90%; /* Ocupa 90% da largura do contêiner */
+    border-collapse: collapse; /* Colapsa as bordas da célula */
+    margin: 20px 0; /* Margem acima e abaixo da tabela */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #fff; /* Fundo branco para a tabela */
+    border-radius: 8px; /* Cantos arredondados */
+    overflow: hidden; /* Garante que os cantos arredondados sejam respeitados */
+    text-align: center; /* Centraliza o texto dentro das células */
+}
+
+/* Estilos para o Cabeçalho da Tabela */
+thead th {
+    border: 1px solid #1413131c;
+    background-color: #f2f2f2;
+    text-align: left; /* Alinha texto à esquerda */
+    font-weight: bold; /* Texto em negrito */
+    letter-spacing: 0.5px; /* Espaçamento entre letras */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.style6 {
+    color: #1f1083;
+    text-align: center;
+    font-size: 25px; /* Define o tamanho da fonte como 20 pixels */
+    text-decoration: none;
+}
