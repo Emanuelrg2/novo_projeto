@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
+</head>
+<body>
+
+     <h2 class="style1">Cadastro de Usuários</h2> 
+        <div class="container">
+           
+            
+            <div class="form-box">
+                
+                <form action="{% url 'api:adicionar' %}" method="post" >
+                    {% csrf_token %}     {# MUITO IMPORTANTE para segurança no Django #} 
+            
+                    <input type="text" name="nome" placeholder="Digite seu nome completo" required>
+                    <input type="text" name="email" placeholder="Digite email" required>
+                    <input type="text" name="endereco" placeholder="Digite seu endereço" required>
+                    <input type="number" name="idade" placeholder="Digite sua idade" required>
+                    
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+
+           
+        </div>
+        <div class = "style2"><a href="{% url  'home' %}">Retornar</a></div>
+    
+</body>
+</html>

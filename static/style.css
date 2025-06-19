@@ -1,46 +1,60 @@
 
 body{
     margin: 0;
+    background: rgb(34, 183, 229); 
+    
 }
 
 .container {
-    
+    align-items: center;
     font-family: cursive;
     display: flex; /* ESSENCIAL: Faz com que os filhos diretos de .container se organizem como itens flex.
                      Se .left e .right estiverem dentro de .container, eles serão dispostos
                      de acordo com as regras do flexbox (por padrão, em linha/horizontalmente). */
     width: 100%; /* O contêiner ocupará a largura total de seu elemento pai (geralmente o body) */
-   
-    min-height: 100vh; /* O contêiner terá, no mínimo, a altura total da viewport (janela de visualização do navegador) */
-    background: rgb(79, 34, 229); /* Define a cor de fundo do contêiner como azul.
-                              Observação: Se as divs .left e .right estiverem dentro e preencherem
-                              este contêiner, essa cor azul poderá ficar coberta pelos fundos delas. */
+  
+ 
+    
 }
 
-
-.style3 {
+.style1 {
     color: #1f1083;
-    font-size: 30px; /* Define o tamanho da fonte como 20 pixels */
-    text-align: center;
-    margin-bottom: 100px; /* Adiciona uma margem inferior de 20 pixels */
-}
-
-
-.links {
-    margin-top: 30px; /* Adiciona uma margem superior de 10 pixels */
-    margin-bottom: 30px; /* Adiciona uma margem inferior de 10 pixels */
-    text-decoration: none; /* Remove o sublinhado dos links */
-    color: rgb(255, 255, 255); /* Define a cor do texto dos links como branca */
-    font-size: x-large;
+    font-size: 40px; /* Define o tamanho da fonte como 20 pixels */
     text-align: center;
     
 }
 
+.style2 {
+    color: #1f1083;
+    font-size: 30px; /* Define o tamanho da fonte como 20 pixels */
+    margin-left: 25%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-decoration: none; /* Remove o sublinhado dos links */
+  
+
+    
+}
+
+
+.links {
+   
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: rgb(255, 255, 255); /* Define a cor do texto dos links como branca */
+    font-size: x-large;  
+    margin-left: 100px;
+    margin-top: 50px;
+    font-weight: bold; /* Deixa o texto em negrito */
+    
+}
+
 .form-box{
-    display: flex;
+    align-items: center;
+    display: flex;;
     flex-direction: column; 
     border-radius: 8px;
-    width: 100%;
+    width: 50%;
+    margin-left: 25%;
    
 }
 
@@ -49,6 +63,7 @@ body{
     align-items: start;
     flex-wrap: wrap;
     padding: 32px;
+    
   
 }
 .form-box input,
@@ -84,14 +99,16 @@ body{
 
 /* Estilos Gerais para a Tabela */
 table {
-    width: 90%; /* Ocupa 90% da largura do contêiner */
+    width: 50%; /* Ocupa 90% da largura do contêiner */
     border-collapse: collapse; /* Colapsa as bordas da célula */
-    margin: 20px 0; /* Margem acima e abaixo da tabela */
+    margin-top: 100px; /* Margem acima e abaixo da tabela */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
     background-color: #fff; /* Fundo branco para a tabela */
     border-radius: 8px; /* Cantos arredondados */
     overflow: hidden; /* Garante que os cantos arredondados sejam respeitados */
     text-align: center; /* Centraliza o texto dentro das células */
+    margin-left: 25%;
+   
 }
 
 /* Estilos para o Cabeçalho da Tabela */
@@ -107,11 +124,4 @@ th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
-}
-
-.style6 {
-    color: #1f1083;
-    text-align: center;
-    font-size: 25px; /* Define o tamanho da fonte como 20 pixels */
-    text-decoration: none;
 }

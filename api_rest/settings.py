@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     'corsheaders', 
     'api_rest',
+    'api',  
 
 ]
 
@@ -127,3 +128,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ORIGINS = 'http//localhost:8080'
+
+# STATICFILES_DIRS: Uma lista de diretórios adicionais onde o Django
+# deve procurar arquivos estáticos DURANTE O DESENVOLVIMENTO.
+# (Não é usado em produção da mesma forma)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'), # Isso aponta para o seu diretório 'API_R_/api_rest/static/'
+]
