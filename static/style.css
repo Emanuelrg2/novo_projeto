@@ -1,127 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-body{
-    margin: 0;
-    background: rgb(34, 183, 229); 
-    
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin: 15px 0;
+  color: #333;
+  justify-content: center;
+  display: flex;
 }
 
 .container {
-    align-items: center;
-    font-family: cursive;
-    display: flex; /* ESSENCIAL: Faz com que os filhos diretos de .container se organizem como itens flex.
-                     Se .left e .right estiverem dentro de .container, eles serão dispostos
-                     de acordo com as regras do flexbox (por padrão, em linha/horizontalmente). */
-    width: 100%; /* O contêiner ocupará a largura total de seu elemento pai (geralmente o body) */
-  
- 
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.style1 {
-    color: #1f1083;
-    font-size: 40px; /* Define o tamanho da fonte como 20 pixels */
-    text-align: center;
-    
+.container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.style2 {
-    color: #1f1083;
-    font-size: 30px; /* Define o tamanho da fonte como 20 pixels */
-    margin-left: 25%;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    text-decoration: none; /* Remove o sublinhado dos links */
-  
-
-    
+.container3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-
-.links {
-   
-    text-decoration: none; /* Remove o sublinhado dos links */
-    color: rgb(255, 255, 255); /* Define a cor do texto dos links como branca */
-    font-size: x-large;  
-    margin-left: 100px;
-    margin-top: 50px;
-    font-weight: bold; /* Deixa o texto em negrito */
-    
+.lista {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
 }
 
-.form-box{
-    align-items: center;
-    display: flex;;
-    flex-direction: column; 
-    border-radius: 8px;
-    width: 50%;
-    margin-left: 25%;
-   
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.form-box form{
-    display: flex;
-    align-items: start;
-    flex-wrap: wrap;
-    padding: 32px;
-    
-  
-}
-.form-box input,
-.form-box textarea{
-    width: 90%;
-    height: 50px;
-    border-radius: 8px;
-    border:thin solid gray;
-    padding-left: 16px;
-    margin-bottom: 16px;
-    font-size: 16px; /* Define o tamanho da fonte como 16 pixels */
+.l1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.form-box button{
-    align-items: center;
-    border-radius: 8px;
-    display: flex;
-    border: none;
-    outline: none  ;
-    width: 200px;
-    height: 50px;
-    background-color: rgb(31, 104, 206);
-    color: white;
-    font-size: 20px; /* Define o tamanho da fonte como 20 pixels */
-    font-weight: bold;
-    cursor: pointer; /* Muda o cursor para uma mãozinha quando passa sobre o botão */
+.label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
 }
 
-.form-box button:hover{
-    background-color: rgb(31, 34, 229); /* Muda a cor de fundo do botão quando o mouse passa sobre ele */
+.input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
 }
 
+.meupa {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
 
-/* Estilos Gerais para a Tabela */
+.meupa:hover {
+  background-color: rgb(54, 53, 53);
+}
+
 table {
-    width: 50%; /* Ocupa 90% da largura do contêiner */
-    border-collapse: collapse; /* Colapsa as bordas da célula */
-    margin-top: 100px; /* Margem acima e abaixo da tabela */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    background-color: #fff; /* Fundo branco para a tabela */
-    border-radius: 8px; /* Cantos arredondados */
-    overflow: hidden; /* Garante que os cantos arredondados sejam respeitados */
-    text-align: center; /* Centraliza o texto dentro das células */
-    margin-left: 25%;
-   
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
 }
 
-/* Estilos para o Cabeçalho da Tabela */
-thead th {
-    border: 1px solid #1413131c;
-    background-color: #f2f2f2;
-    text-align: left; /* Alinha texto à esquerda */
-    font-weight: bold; /* Texto em negrito */
-    letter-spacing: 0.5px; /* Espaçamento entre letras */
+table,
+th,
+td {
+  border: 1px solid #ddd;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+th,
+td {
+  text-align: left;
+  padding: 10px;
+}
+
+th {
+  background-color: black;
+  color: white;
+  padding: 2px;
+}
+
+.remover {
+  justify-content: center;
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(121, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.remover:hover {
+  background-color: rgb(174, 0, 0);
+}
+
+.atualizar {
+  justify-content: center;
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(1, 1, 144);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.atualizar:hover {
+  background-color: rgb(1, 1, 200);
+}
+
+.qtd {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(4, 4, 240);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.qtd:hover {
+  background-color: rgb(5, 5, 110);
+}
+
+.mensagem {
+  color: green;
+  font-weight: bold;
+  margin: 0px;
+  text-align: center;
+}
+
+.msg {
+  margin: 30px;
+  padding: 10px;
+  background-color: #e0ffe0;
+  border: 1px solid #70d070;
+  border-radius: 5px;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 15px 0;
+  background-color: #f2f2f2;
+  margin-top: 30px;
 }

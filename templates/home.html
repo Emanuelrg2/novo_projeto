@@ -1,22 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta</title>
-
-     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}"> 
- 
+    <title>Mercadinho</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
+
 <body>
-    <h1 class = style1>Esta é a página principal do projeto</h1>
-      <div class = "links">
-                <div><a href="{% url 'api:adicionar' %}">Cadastrar usuário</a></div>
-                <div><a href="{% url  'api:consulta' %}">Consultar usuários</a></div>
-                
+    <h2>Cadastrar produto</h2>
+    <div class="container">
+        <div class="lista">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="card">
+                    <div class="l1">
+                        <label class="label" for="nome">Nome do produto</label>
+                        <input class="input" type="text" required id="nome" name="nome"
+                            placeholder="Insira o nome do produto." minlength="2" maxlength="25">
+                    </div>
+                    <div class="l1">
+                        <label class="label" for="codigo">Código do produto</label>
+                        <input class="input" type="number" required id="codigo" name="codigo"
+                            placeholder="Insira o código." min="999999999" max="999999999">
+                    </div>
+                    <div class="l1">
+                        <label class="label" for="quantidade">Quantidade</label>
+                        <input class="input" type="number" required id="quantidade" name="quantidade"
+                            placeholder="Insira a quantidade" min="1" max="100">
+                    </div>
+                    <div class="l1">
+                        <label class="label" for="preco">Preço</label>
+                        <input class="input" type="number" step="0.01" required id="preco" name="preco"
+                            placeholder="Insira o preço">
+                    </div>
+                    <button type="submit" name="btn_cadastrar" class="meupa">Inserir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h2>Procurar produto</h2>
+    <div class="container2">
+        <div class="lista">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="card">
+                    <div class="l1">
+                        <label class="label" for="nome_busca">Procurar Produto</label>
+                        <input class="input" type="text" id="nome_busca" name="nome"
+                            placeholder="Insira o nome ou código do produto.">
+                    </div>
+                    <button type="submit" name="btn_procurar" class="meupa">Procurar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h2>Lista de produtos</h2>
+    <div class="container3">
+        <div class="lista">
+            <div class="card">
+                <table id="tabelaProdutos">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Preço (R$)</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in produtos %}
+                        <tr>
+                            <td>{{ p.codigo }}</td>
+                            <td>{{ p.nome }}</td>
+                            <td>
+                                <form method="post" id="form-{{ forloop.counter }}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="codigo" value="{{ p.codigo }}">
+                                    <input type="number" name="nova_quantidade" value="{{ p.quantidade }}" min="0"
+                                        id="quantidade-{{ forloop.counter }}" disabled style="width: 60px;">
+                                </form>
+                            </td>
+                            <td>{{ p.preco|floatformat:2 }}</td>
+                            <td>
+                                <button type="button" onclick="ativarEdicao({{ forloop.counter }})" class="atualizar"
+                                    id="btn-{{ forloop.counter }}">Atualizar</button>
+
+                                <form method="post" style="display:inline;"
+                                    onsubmit="return confirm('Confirma remover este produto?');">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="codigo" value="{{ p.codigo }}">
+                                    <button type="submit" name="remover_produto" class="remover">Remover</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">Nenhum produto encontrado.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
             </div>
         </div>
+    </div>
 
+    {% if mensagem %}
+    <div class="msg">
+        <p class="mensagem">{{ mensagem }}</p>
+    </div>
+    {% endif %}
+
+    <script>
+        function ativarEdicao(id) {
+            const input = document.getElementById('quantidade-' + id);
+            const botao = document.getElementById('btn-' + id);
+            const form = document.getElementById('form-' + id);
+
+            if (input.disabled) {
+                input.disabled = false;
+                input.focus();
+                botao.textContent = "Salvar";
+            } else {
+                form.submit();
+            }
+        }
+    </script>
+    <footer>
+        <p>© 2025 Emanuel Ramos Gomes</p>
+    </footer>
 </body>
+
 </html>

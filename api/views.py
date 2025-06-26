@@ -1,62 +1,54 @@
-# Imports necessários para a API REST
-from requests import Response
-from rest_framework import viewsets # Importando viewsets do Django REST Framework
-from django.shortcuts import render, redirect # Importando render e redirect do Django
-from .forms import CreateDataForm # Importando o formulário CreateDataForm
+from django.shortcuts import render, redirect
+from .models import Produto
 
+def pagina_home(request):
+    mensagem = ''
+    produtos = Produto.objects.all()
 
-# Importando o serializer e o modelo necessários
-from .serializers import UsuariosSerializer
-from .models import Usuarios
+    if request.method == 'POST':
+        if 'nova_quantidade' in request.POST:
+            codigo = request.POST.get('codigo')
+            nova_qtd = request.POST.get('nova_quantidade')
 
+            try:
+                produto = Produto.objects.get(codigo=codigo)
+                produto.quantidade = int(nova_qtd)
+                produto.save()
+                mensagem = f'Quantidade do produto "{produto.nome}" atualizada para {nova_qtd}.'
+            except Produto.DoesNotExist:
+                mensagem = 'Produto não encontrado para atualização.'
 
-# arquivos de viwes para renderisação dos templates
+        elif 'remover_produto' in request.POST:
+            codigo = request.POST.get('codigo')
+            try:
+                produto = Produto.objects.get(codigo=codigo)
+                produto.delete()
+                mensagem = f'Produto "{produto.nome}" removido com sucesso.'
+            except Produto.DoesNotExist:
+                mensagem = 'Produto não encontrado para remoção.'
 
-# def form_cadastro_view(request):
-#     return render(request, 'cadastro.html')
+        elif 'btn_cadastrar' in request.POST:
+            nome = request.POST.get('nome')
+            codigo = request.POST.get('codigo')
+            quantidade = request.POST.get('quantidade')
+            preco = request.POST.get('preco')
 
-def consulta_view(request):
-    return render(request, 'consulta.html')
+            if Produto.objects.filter(codigo=codigo).exists():
+                mensagem = 'Já existe um produto com esse código.'
+            else:
+                Produto.objects.create(
+                    nome=nome,
+                    codigo=codigo,
+                    quantidade=quantidade,
+                    preco=preco
+                )
+                mensagem = f'Produto "{nome}" cadastrado com sucesso.'
 
-# arquivos de views para API REST
-class UsuariosViewSet(viewsets.ModelViewSet): 
-    queryset = Usuarios.objects.all()
-    serializer_class = UsuariosSerializer
-    model = Usuarios
-    tamplet_name = 'consulta.html'
-    context_object_name = 'usuarios'
+        elif 'btn_procurar' in request.POST:
+            termo = request.POST.get('nome')
+            produtos = Produto.objects.filter(nome__icontains=termo) | Produto.objects.filter(codigo__icontains=termo)
 
-#arquivos de views para API REST
-def cadastro_view(request):
-    """
-    Esta view lida com a exibição do formulário de cadastro (GET)
-    e com o processamento da submissão do formulário (POST).
-    """
-    if request.method == "POST":
-        form = CreateDataForm(request.POST) # Instancia o formulário com os dados POST
-        if form.is_valid():
-            form.save() # Salva os dados no banco de dados
-            return redirect('api:consulta') # Redireciona para a página de consulta
-        else:
-            # Se a validação falhar, renderiza o template COM O FORMULÁRIO QUE CONTÉM OS ERROS
-            return render(request, 'cadastro.html', {'form': form})
-    else: # Requisição GET: exibe o formulário vazio
-        form = CreateDataForm()
-    return render(request, 'cadastro.html', {'form': form})
-
-def consulta_view(request):
-    """
-    Esta view busca todos os itens da tabela Usuarios e os renderiza
-    em um template HTML.
-    """
-    # 1. Obter todos os objetos (itens) do modelo Usuarios
-    #    O .objects é o "manager" do modelo, e .all() retorna um QuerySet de todos os objetos.
-    todos_usuarios = Usuarios.objects.all()
-
-    # 2. Passar os objetos para o template no contexto
-    context = {
-        'usuarios': todos_usuarios # O nome 'usuarios' será usado no template para iterar sobre eles
-    }
-
-    # 3. Renderizar o template 'consulta.html' com os dados
-    return render(request, 'consulta.html', context)
+    return render(request, 'home.html', {
+        'produtos': produtos,
+        'mensagem': mensagem
+    })
